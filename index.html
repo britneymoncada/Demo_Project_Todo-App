@@ -10,20 +10,50 @@
   <body>
     <div class="page">
       <div class="page__content">
+        <!-- ==================================================
+             🧠 HEADER SECTION
+             - Displays the app title, banner, and Add Todo button
+             - JS Target: addTodoButton (.button_action_add)
+        ================================================== -->
+
         <header class="header">
           <h1 class="header__title">The Simple ToDo App</h1>
           <p class="header__banner">Do these things</p>
+
+          <!-- Add ToDo Button (opens popup) -->
           <button class="button button_action_add header__button">
             + Add Todo
           </button>
+
+          <!-- ==================================================
+               🧾 'ADD TODO' POPUP (MODAL)
+               - Appears when "+ Add Todo" is clicked
+               - JS Targets:
+                   • addTodoPopup (#add-todo-popup)
+                   • addTodoForm (.popup__form)
+                   • addTodoCloseBtn (.popup__close)
+               - Contains form to create a new ToDo
+          ================================================== -->
+
           <div class="popup" id="add-todo-popup">
             <div class="popup__content">
               <h3 class="popup__title">Add new ToDo</h3>
+
+              <!-- Close popup button -->
+
               <button
                 aria-label="Close modal"
                 class="popup__close"
                 type="button"
               ></button>
+
+              <!-- ==================================================
+                   'ADD TODO' FORM
+                   - User enters todo name + optional date
+                   - JS Target: addTodoForm (.popup__form)
+                   - Validation based on validationConfig object
+              ================================================== -->
+
               <form
                 class="popup__form"
                 name="add-todo-form"
@@ -31,6 +61,8 @@
                 novalidate
               >
                 <fieldset class="popup__fieldset">
+                  <!-- 'ToDo name' input -->
+
                   <label class="popup__label" for="todo-name">
                     What needs to be done?
                     <input
@@ -45,6 +77,9 @@
                     />
                     <span class="popup__error" id="todo-name-error"></span>
                   </label>
+
+                  <!-- Optional due date input -->
+
                   <label class="popup__label" for="todo-date">
                     When does it need to be done? (optional)
                     <input
@@ -58,6 +93,8 @@
                     <span class="popup__error" id="todo-date-error"></span>
                   </label>
                 </fieldset>
+
+                <!-- Submit new ToDo button -->
                 <button class="button popup__button" type="submit">
                   Create
                 </button>
@@ -65,12 +102,35 @@
             </div>
           </div>
         </header>
+
+        <!-- ==================================================
+             📊 COUNTER SECTION
+             - Displays number of completed todos
+             - (Not dynamically updated yet)
+        ================================================== -->
+
         <main>
           <section class="counter">
             <h2 class="counter__text">Showing X out of Y completed</h2>
           </section>
+
+          <!-- ==================================================
+               📋 TODOS LIST SECTION
+               - Contains all ToDo items
+               - JS Target: todosList (.todos__list)
+               - JS uses todoTemplate (#todo-template)
+                 to clone and create new list items
+          ================================================== -->
+
           <section class="todos">
             <ul class="todos__list">
+              <!-- ==================================================
+                   🧩 TODO TEMPLATE
+                   - Hidden <template> used for creating new todos dynamically
+                   - JS Target: todoTemplate (#todo-template)
+                   - Structure is cloned inside generateTodo()
+              ================================================== -->
+
               <template id="todo-template">
                 <li class="todo">
                   <label class="todo__label" for="">
@@ -79,6 +139,7 @@
                     <span class="todo__date"></span>
                   </label>
                   <ul class="todo__buttons">
+                    <!-- Delete button (removes todo) -->
                     <!-- List is used to support future additional buttons -->
                     <li>
                       <button class="todo__delete-btn" type="button"></button>
@@ -88,8 +149,15 @@
               </template>
             </ul>
           </section>
-          <script src="./pages/index.js" defer></script>
-          <script src="./scripts/validate.js" defer></script>
+          <!-- ==================================================
+               📜 SCRIPT IMPORTS
+               - JS files controlling the app
+               - index.js → main logic
+               - validate.js → form validation (future)
+          ================================================== -->
+
+          <script type="module" src="./scripts/validate.js"></script>
+          <script type="module" src="./pages/index.js"></script>
         </main>
       </div>
     </div>
