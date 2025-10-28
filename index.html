@@ -74,6 +74,7 @@
                       placeholder="Write here"
                       required
                       type="text"
+                      autocomplete="off"
                     />
                     <span class="popup__error" id="todo-name-error"></span>
                   </label>
@@ -87,8 +88,9 @@
                       id="todo-date"
                       name="date"
                       type="date"
-                      min="2023-01-01"
+                      min="2025-10-28"
                       max="3000-12-31"
+                      autocomplete="off"
                     />
                     <span class="popup__error" id="todo-date-error"></span>
                   </label>
@@ -156,7 +158,6 @@
                - validate.js → form validation (future)
           ================================================== -->
 
-          <script type="module" src="./scripts/validate.js"></script>
           <script type="module" src="./pages/index.js"></script>
         </main>
       </div>
