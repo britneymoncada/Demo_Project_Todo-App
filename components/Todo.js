@@ -5,12 +5,15 @@
 // and rendering for each to-do. Will be refactored into Todo class.
 
 export default class Todo {
-  constructor(data, selector) {
+  constructor(data, selector, { onToggle, onDelete }) {
     this._name = data.name;
     this._completed = Boolean(data.completed);
     this._date = data.date ? new Date(data.date) : null;
     this._id = data.id;
     this._selector = selector;
+
+    this._onToggle = onToggle;
+    this._onDelete = onDelete;
 
     // instance refs (filled in getView)
     this._element = null;
@@ -23,11 +26,23 @@ export default class Todo {
 
   _setEventListeners() {
     this._deleteBtn.addEventListener("click", () => {
+      const wasCompleted = this._completed;
       this._element.remove();
+
+      if (this._onDelete) {
+        this._onDelete(wasCompleted);
+      }
     });
 
     this._checkbox.addEventListener("change", () => {
-      this._completed = this._checkbox.checked;
+      const wasCompleted = this._completed;
+      const isNowCompleted = this._checkbox.checked;
+
+      this._completed = isNowCompleted;
+
+      if (this._onToggle) {
+        this._onToggle(isNowCompleted, wasCompleted);
+      }
     });
   }
 

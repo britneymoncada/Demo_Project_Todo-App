@@ -56,13 +56,31 @@ const popupAddTodo = new PopupWithForm(addTodoPopupSelector, (formData) => {
     date: formData.date ? new Date(formData.date) : null,
     completed: false,
   };
-  const todo = new Todo(values, "#todo-template");
+  const todo = new Todo(values, "#todo-template", {
+    onToggle: (isNowCompleted, wasCompleted) => {
+      if (isNowCompleted && !wasCompleted) {
+        todoCounter.updateCompleted(true);
+      } else if (!isNowCompleted && wasCompleted) {
+        todoCounter.updateCompleted(false);
+      }
+    },
+    onDelete: (wasCompleted) => {
+      todoCounter.updateTotal(false);
+      if (wasCompleted) {
+        todoCounter.updateCompleted(false);
+      }
+    },
+  });
+
   const todoElement = todo.getView();
   todoSection.addItem(todoElement);
 
   addTodoValidator.resetValidation();
   todoCounter.updateTotal(true);
+
+  popupAddTodo.close();
 });
+
 popupAddTodo.setEventListeners();
 
 // ==================================================
