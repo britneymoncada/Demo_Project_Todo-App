@@ -4,7 +4,7 @@
 // This function currently handles DOM creation, event binding,
 // and rendering for each to-do. Will be refactored into Todo class.
 
-export class Todo {
+export default class Todo {
   constructor(data, selector) {
     this._name = data.name;
     this._completed = Boolean(data.completed);

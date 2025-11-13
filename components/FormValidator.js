@@ -1,4 +1,4 @@
-export class FormValidator {
+export default class FormValidator {
   constructor(settings, formElement) {
     this._settings = settings; // save validation rules (selectors, CSS classes, etc.)
     this._formElement = formElement; // the specific form we’re validating
