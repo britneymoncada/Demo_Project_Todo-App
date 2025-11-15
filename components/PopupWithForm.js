@@ -29,22 +29,21 @@ class PopupWithForm extends Popup {
     // first call parent's listener logic (for overlay + close button)
     super.setEventListeners();
 
-    // then add form-specific listener
+    // add form-specific listener
     this._form.addEventListener("submit", (evt) => {
       evt.preventDefault();
 
       // get all inputs as an object
       const inputData = this._getInputValues();
 
-      // call the callback you provided in index.js
+      // call the callback from index.js
       this._handleFormSubmit(inputData);
 
-      // optional: reset form after submission
+      // reset form after submission
       this._form.reset();
     });
   }
 
-  // also override close() to reset form each time popup closes
   close() {
     super.close();
   }

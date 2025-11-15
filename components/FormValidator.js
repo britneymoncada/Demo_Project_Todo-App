@@ -1,9 +1,9 @@
 export default class FormValidator {
   constructor(settings, formElement) {
     this._settings = settings; // save validation rules (selectors, CSS classes, etc.)
-    this._formElement = formElement; // the specific form we’re validating
+    this._formElement = formElement; // save the specific form we’re validating
 
-    // query and store all inputs + the submit button
+    // store all inputs + the submit button
     this._inputList = Array.from(
       this._formElement.querySelectorAll(this._settings.inputSelector)
     );
@@ -64,7 +64,6 @@ export default class FormValidator {
     });
   }
 
-  // --- public API ---
   enableValidation() {
     this._formElement.addEventListener("submit", (evt) => evt.preventDefault());
     this._setEventListeners();
