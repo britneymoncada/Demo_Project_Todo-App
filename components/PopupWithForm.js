@@ -20,6 +20,10 @@ class PopupWithForm extends Popup {
     return formValues;
   }
 
+  getForm() {
+    return this._form;
+  }
+
   // Override parent method to add form submit behavior
   setEventListeners() {
     // first call parent's listener logic (for overlay + close button)
@@ -43,7 +47,6 @@ class PopupWithForm extends Popup {
   // also override close() to reset form each time popup closes
   close() {
     super.close();
-    this._form.reset();
   }
 }
 
